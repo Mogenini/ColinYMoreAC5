@@ -16,7 +16,7 @@ from freegames import path
 
 car = path('car.gif')
 tiles = list(range(32)) * 2
-state = {'mark': None}
+state = {'mark': None, 'taps': 0} # definicion de taps
 hide = [True] * 64
 emojis = [
     "😀", "🥳", "🌟", "🚀", "🍕", "💡", "🔥", "🎨",
@@ -53,6 +53,7 @@ def tap(x, y):
     """Update mark and hidden tiles based on tap."""
     spot = index(x, y)
     mark = state['mark']
+    state['taps'] += 1 # cuenta taps
 
     if mark is None or mark == spot or tiles[mark] != tiles[spot]:
         state['mark'] = spot
@@ -60,6 +61,7 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+        
 
 
 def draw():
@@ -86,6 +88,18 @@ def draw():
         #Usamos Tile[mark] para tenerlo como el indice de nuestra lista de empojis.
         write(emojis[tiles[mark]], font=('Arial', 30, 'normal'))
 
+
+    #Contador de taps
+    up()
+    goto(145, 180)
+    color('black')
+    write(f'Taps: {state["taps"]}',align = "left",  font=('Arial', 16, 'bold'))
+
+    #Contador de revelados
+    revealed = hide.count(False)
+    goto(-85, 180)
+    write(f'Revealed: {revealed}/64', align = "right", font=('Arial', 16, 'bold'))
+    
     update()
     ontimer(draw, 100)
 
