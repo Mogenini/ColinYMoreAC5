@@ -18,6 +18,12 @@ car = path('car.gif')
 tiles = list(range(32)) * 2
 state = {'mark': None}
 hide = [True] * 64
+emojis = [
+    "😀", "🥳", "🌟", "🚀", "🍕", "💡", "🔥", "🎨",
+    "🎉", "🦄", "🌈", "🍩", "⚡", "💻", "📱", "🎧",
+    "🎮", "📚", "🏖️", "🏔️", "🌍", "🍿", "🎤", "🎸",
+    "⚽", "🏀", "🏆", "🏅", "🎯", "🛠️", "💪", "🔧"
+]
 
 
 def square(x, y):
@@ -73,9 +79,12 @@ def draw():
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        goto(x + 2, y)
+        #Aqui estamos justificando de forma estricta
+        goto(x + 10, y + 10)
         color('black')
-        write(tiles[mark], font=('Arial', 30, 'normal'))
+        #print(tiles[mark])
+        #Usamos Tile[mark] para tenerlo como el indice de nuestra lista de empojis.
+        write(emojis[tiles[mark]], font=('Arial', 30, 'normal'))
 
     update()
     ontimer(draw, 100)
