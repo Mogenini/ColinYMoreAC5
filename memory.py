@@ -18,6 +18,7 @@ car = path('car.gif')
 tiles = list(range(32)) * 2
 state = {'mark': None, 'taps': 0} # definicion de taps
 hide = [True] * 64
+#Se agregaron emojis como sustituto a númeor 
 emojis = [
     "😀", "🥳", "🌟", "🚀", "🍕", "💡", "🔥", "🎨",
     "🎉", "🦄", "🌈", "🍩", "⚡", "💻", "📱", "🎧",
