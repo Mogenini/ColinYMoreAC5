@@ -100,6 +100,12 @@ def draw():
     revealed = hide.count(False)
     goto(-85, 180)
     write(f'Revealed: {revealed}/64', align = "right", font=('Arial', 16, 'bold'))
+    print(revealed)
+    if(revealed == 64):
+        goto(0, 0)
+        color('black')
+        write("Ganaste", align="center", font=('Arial', 16, 'bold'))
+        return True
     
     update()
     ontimer(draw, 100)
